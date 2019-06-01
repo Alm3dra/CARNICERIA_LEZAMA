@@ -5808,17 +5808,17 @@ button.close {
 }
 
 .carousel {
-  position: relative;
+  position: absolute;
 }
 
 .carousel-inner {
-  position: relative;
+  position: absolute;
   width: 100%;
   overflow: hidden;
 }
 
 .carousel-item {
-  position: relative;
+  position: absolute;
   display: none;
   -ms-flex-align: center;
   align-items: center;
