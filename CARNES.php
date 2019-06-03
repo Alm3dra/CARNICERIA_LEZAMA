@@ -136,21 +136,40 @@ body{
       <a class="btn btn-primary" href="#" role="button">Link</a>
     </div>
   </div>
+
+<?php 
+  
+  include 'conexion.php';
+  $re=mysql_query("select*from productos")or die(mysql_error());
+  while ($f=mysql_fetch_array($re)) {
+
+
+?>
+
   <div class="card">
-    <img class="card-img-top img-fluid" src="images/costilla.jpg" alt="Card image cap">
+    <img alt="Card image cap" class="card-img-top img-fluid" src="images/<?php echo $f ['imagen']; ?> "> <br> 
+
+
     <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+      <h5 class="card-title"> </h5>
+      <p class="card-text" ./detalles.php ></p>
       </div>
+      <?php
+
+       }
+    ?>
+    
      <div class="card-footer">
      <a class="btn btn-primary" href="#" role="button">Link</a>
     </div>
+
   </div>
+
   <div class="card">
     <img class="card-img-top img-fluid" src="images/espinazo.jpg" alt="Card image cap">
     <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional cLorem  ggggggggggggggggggggontent. This card has even longer content than the first to show that equal height action.</p>
+      <h5 class="card-title" ><?php echo $f['nombre'];?></h5>
+      <p class="card-text"> This is a wider card with supporting text below as a natural lead-in to additional cLorem  ggggggggggggggggggggontent. This card has even longer content than the first to show that equal height action.</p>
        </div>
       <div class="card-footer">
      <a class="btn btn-primary" href="#" role="button">Link</a>
@@ -247,6 +266,10 @@ body{
           <a class="text-secondary" href="#!">CARNES</a>
         </p>
         <p>
+
+
+
+          
           <a class="text-secondary" href="#!">PRODUCTOS VARIOS</a>
         </p>
           </div>
