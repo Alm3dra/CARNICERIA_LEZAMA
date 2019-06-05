@@ -1,10 +1,14 @@
 <?php
+$USUARIO="root";
+$PASSWORD="";
+$SERVIDOR="localhost";
+$BD=car2;
 
-$servidor="mysql:dbname="car2";host=".SERVIDOR;
+
 
 try{
 
-	$pdo= new PDO($servidor,USUARIO,PASSWORD,
+	$pdo= new PDO(SERVIDOR,USUARIO,PASSWORD,
 		array(PDO::MYSQL_ATTR_INIT_COMMAND=>"SET NAMES utf8"));
 
 	echo "<script>alert('Conectadoo...')</script>";}
