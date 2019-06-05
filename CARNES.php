@@ -125,6 +125,11 @@ body{
 
 <!-- PRODUCTOS -->
 <section class="container"> 
+  <?php 
+   include 'conexionn.php';
+  $re=mysql_query("select*from productos")or die(mysql_error());
+  while ($f=mysql_fetch_array($re)) {
+?>
 <div class="card-deck">
   <div class="card">
     <img class="card-img-top img-fluid" src="images/chicharron.jpg" alt="Card image cap">
@@ -136,40 +141,21 @@ body{
       <a class="btn btn-primary" href="#" role="button">Link</a>
     </div>
   </div>
-
-<?php 
-  
-  include 'conexion.php';
-  $re=mysql_query("select*from productos")or die(mysql_error());
-  while ($f=mysql_fetch_array($re)) {
-
-
-?>
-
   <div class="card">
-    <img alt="Card image cap" class="card-img-top img-fluid" src="images/<?php echo $f ['imagen']; ?> "> <br> 
-
-
+    <img class="card-img-top img-fluid" src="images/costilla.jpg" alt="Card image cap">
     <div class="card-body">
-      <h5 class="card-title"> </h5>
-      <p class="card-text" ./detalles.php ></p>
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
       </div>
-      <?php
-
-       }
-    ?>
-    
      <div class="card-footer">
      <a class="btn btn-primary" href="#" role="button">Link</a>
     </div>
-
   </div>
-
   <div class="card">
     <img class="card-img-top img-fluid" src="images/espinazo.jpg" alt="Card image cap">
     <div class="card-body">
-      <h5 class="card-title" ><?php echo $f['nombre'];?></h5>
-      <p class="card-text"> This is a wider card with supporting text below as a natural lead-in to additional cLorem  ggggggggggggggggggggontent. This card has even longer content than the first to show that equal height action.</p>
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional cLorem  ggggggggggggggggggggontent. This card has even longer content than the first to show that equal height action.</p>
        </div>
       <div class="card-footer">
      <a class="btn btn-primary" href="#" role="button">Link</a>

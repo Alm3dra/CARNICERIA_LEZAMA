@@ -1,19 +1,11 @@
-<?php
-$USUARIO="root";
-$PASSWORD="";
-$SERVIDOR="localhost";
-$BD=car2;
+<?php 
 
+$server="localhost";
+$username="root";
+$password
+$db='car2';
 
+$conn=mysql_connect($server,$username,$password) or die("INCONEXION");
+$sdb=mysql_select_db($db,$conn);
 
-try{
-
-	$pdo= new PDO(SERVIDOR,USUARIO,PASSWORD,
-		array(PDO::MYSQL_ATTR_INIT_COMMAND=>"SET NAMES utf8"));
-
-	echo "<script>alert('Conectadoo...')</script>";}
-	catch(PDOException $e){
-		echo "<script>alert('Error...')</script>";}
-	}
-
-}
+ ?>
