@@ -1,3 +1,6 @@
+<?php 
+include 'conexionn.php';
+include 'carrito.php';?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -125,79 +128,77 @@ body{
 
 <!-- PRODUCTOS -->
 <section class="container"> 
-  <?php 
-   include 'conexionn.php';
-  $re=mysql_query("select*from productos")or die(mysql_error());
-  while ($f=mysql_fetch_array($re)) {
-?>
+<div class="row" >
+
+  <?php
+  $sentencia=$pdo->prepare("SELECT * FROM productos" );
+  $sentencia->execute();
+  $listaProductos=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+ // print_r($listaProductos); ?>
+
+<?php foreach ($listaProductos as $producto) {?>
+  <div class="col-4" >
 <div class="card-deck">
+  
   <div class="card">
-    <img class="card-img-top img-fluid" src="images/chicharron.jpg" alt="Card image cap">
+    <img 
+    title="
+
+    DESCRIPCIÓN: 
+
+  <?php echo $producto['descripcion']; ?>"
+
+
+    alt="<?php echo $producto['imagen']; ?>"  
+    class="card-img-top img-fluid" 
+    src="images/<?php echo $producto['imagen']; ?>" 
+    data-toggle="popover"
+    data-trigger="hover"
+    title="<?php echo $producto['nombre']; ?>" 
+    data-content="<?php echo $producto['descripcion']; ?>"
+    >
+
     <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    </div>
+      <h5 class="card-title"><?php echo $producto['nombre']; ?></h5>
+      <p class="card-text"> $ <?php echo $producto['precio']; ?>. <br>DESCRIPCIÓN</p>
+  <!-- formulario -->
+<form action="" method="post">
+<input type="text" name="idp" id="idp" value="<?php echo openssl_encrypt($producto['idp'], COD, KEY); ?>">
+<input type="text" name="nombre" id="nombre" value="<?php echo openssl_encrypt($producto['nombre'], COD, KEY); ?>">  
+<input type="text" name="precio" id="precio" value="<?php echo openssl_encrypt($producto['precio'], COD, KEY); ?>">    
+<input type="text" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1, COD, KEY); ?>">
+<!-- boton -->
      <div class="card-footer">
-      <a class="btn btn-primary" href="#" role="button">Link</a>
+      <button class="btn btn-primary" 
+      name="btnAccion"
+      value="AGREGAR"
+      type="submit" ><?php echo ($mensaje) ?></button>
     </div>
-  </div>
-  <div class="card">
-    <img class="card-img-top img-fluid" src="images/costilla.jpg" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-      </div>
-     <div class="card-footer">
-     <a class="btn btn-primary" href="#" role="button">Link</a>
-    </div>
-  </div>
-  <div class="card">
-    <img class="card-img-top img-fluid" src="images/espinazo.jpg" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional cLorem  ggggggggggggggggggggontent. This card has even longer content than the first to show that equal height action.</p>
-       </div>
-      <div class="card-footer">
-     <a class="btn btn-primary" href="#" role="button">Link</a>
-    </div>
-    </div>
+
+</form>
+ 
+     <p> <br> </p>
+   </div>
+ </div>
 </div>
+   </div>
+
+
+<?php }  ?>
+
+
+
+
+
+</div>
+<script type="text/javascript">
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
+</script>
 </section>
 
-<section class="container"> 
-<div class="card-deck">
-  <div class="card">
-    <img class="card-img-top img-fluid" src="images/chicharron.jpg" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    </div>
-     <div class="card-footer">
-      <a class="btn btn-primary" href="#" role="button">Link</a>
-    </div>
-  </div>
-  <div class="card">
-    <img class="card-img-top img-fluid" src="images/costilla.jpg" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-      </div>
-     <div class="card-footer">
-     <a class="btn btn-primary" href="#" role="button">Link</a>
-    </div>
-  </div>
-  <div class="card">
-    <img class="card-img-top img-fluid" src="images/espinazo.jpg" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional cLorem  ggggggggggggggggggggontent. This card has even longer content than the first to show that equal height action.</p>
-       </div>
-      <div class="card-footer">
-     <a class="btn btn-primary" href="#" role="button">Link</a>
-    </div>
-    </div>
-</div>
-</section>
+
 
  <p ><br> <br> <br> <br></p>
 
@@ -218,7 +219,7 @@ body{
         <!-- Grid column -->
       </div>
       <!-- Grid row-->
-
+  </div>
     </div>
   </div>
 
